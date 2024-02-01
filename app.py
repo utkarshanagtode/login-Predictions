@@ -1,6 +1,7 @@
 from flask import Flask, render_template, session, redirect
 from functools import wraps
 import pymongo
+import subprocess
 
 app = Flask(__name__)
 app.secret_key = b'\xcc^\x91\xea\x17-\xd0W\x03\xa7\xf8J0\xac8\xc5'
@@ -31,3 +32,20 @@ def home():
 @login_required
 def dashboard():
   return render_template('dashboard.html')
+
+
+@app.route('/test')
+def test():
+  return render_template('test.html')
+
+
+@app.route('/match_pred')
+def streamlit():
+    streamlit_process = subprocess.Popen(['streamlit', 'run', 'main.py', '--server.port', '8501'], stdout=subprocess.PIPE)
+    output, _ = streamlit_process.communicate()
+    return output
+
+
+
+if __name__ == '__main__':
+  app.run(debug=True)
