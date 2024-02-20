@@ -19,7 +19,7 @@ cities = ['Hyderabad', 'Bangalore', 'Mumbai', 'Indore', 'Kolkata', 'Delhi',
        'Sharjah', 'Mohali', 'Bengaluru']
 
 pipe = pickle.load(open('pipe.pkl', 'rb'))
-st.title('IPL Win Predictor')
+st.title('Match Winning Predictor')
 
 
 initial_state = st.experimental_get_query_params()
